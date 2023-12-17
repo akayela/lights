@@ -1,0 +1,14 @@
+{% extends '_base.html'%}
+{% load static %}
+
+{% block content %}
+
+<form method="POST" action="">
+   {% csrf_token %}
+     <h1>Are you sure you want to delete?</h1><br>
+     <input type="submit" value="Yes" />
+     <a href="{% url 'stock_list' %}">
+         <div>Cancel</div></a>
+</form>
+
+{% endblock content %}

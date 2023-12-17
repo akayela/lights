@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Liggiefees{% endblock title %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,
+wght@0,400;0,700;1,400;1,700&display=swap"
+rel="stylesheet">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <div class="container">
+         <div class="hero" id="hero">
+            <nav>
+               <img class="hero-logo" src="{% static 'images/logo.svg' %}">
+            </nav>
+         </div>
+        <div class="main">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+   <script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<center><h2 class="display-2" style="color: #67DCF1; text-shadow:5px 3px  #0B40EF; font-weight: bolder;">Akkh Workshop</h2></center>
+<br>
+<div class="row"><!--Start of row-->
+<form action="" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <br>
+    
+        <input class="btn orange" type="submit" name="Save" value="ASSIGN">
+    </form>
+ </div><!--End of first col-->
+<br>
+ <table class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr style="background-color:#0B40EF;">
+                    <th>ASSIGNEE</th>
+                    <th>ASSIGNMENT</th>
+                    <th>DUE</th>
+                    <th>STATUS</th>
+                    <th>UPDATE</th>
+                   <th>DELETE</th>
+                </tr>
+                </thead>
+                <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.assignee }}</td>
+                    <td>{{ task.assignment }}</td>
+                    <td>{{ task.due|date:'SHORT_DATE_FORMAT'}}</td>
+                    {% if task.complete == True %}
+                    <td>
+                        <a href="#" class='btn btn-primary mybutton'><strike>COMPLETE</strike></a>
+                    </td>
+                    {% elif task.in_progress == True %}
+                    <td>
+                        <a href="#" class="btn btn-success mybutton">IN-PROGRESS</a>
+                    </td>
+                    {% elif task.delayed == True %}
+                    <td>
+                        <a href="#" class="btn btn-danger mybutton">DELAYED</a>
+                    </td>
+                    {% else %}
+                    <td> 
+                        <a href="#" class="btn btn-warning mybutton">PENDING</a>
+                    </td>
+                    {% endif %}
+                        <td> <a class="btn btn-warning mybutton" href="{% url 'update_task' task.id %}">UPDATE</a></td>
+                        <td> <a class="btn btn-danger mybutton" href="{% url 'delete_task' task.id %}">DELETE</a></td>
+                </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+            </div><!--End of second col-->
+
+</div><!--End of row-->
+
+{% endblock content %}

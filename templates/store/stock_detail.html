@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+
+<a href='{% url 'stock_list' %}'><div class='btn btn-warning'>BACK TO LIST</div></a>
+        <br><br>
+        <div class="display_table">
+          <table class='table'>
+                  <tr>
+                    <th>ITEM NAME</th>
+                    <th>QUANTITY IN STORE</th>
+                    <th>LAST UPDATED</th>
+                  </tr>
+                  <tr>
+                    <td>{{queryset.color}}</td>
+                    <td>{{queryset.quantity}}</td>
+                    <td>{{queryset.last_updated}}</td>
+                  </tr>
+          </table>
+        </div>
+
+{% endblock content %}

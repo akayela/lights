@@ -1,0 +1,90 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+
+<h2 id="heading">Liggiefees Stock</h2>
+
+<form action="">
+<div class="input-group">
+    
+    <input type="text" name="q" id="search" placeholder="Search">
+    <div id="buttons">
+    <button title="Search" >Search</button>
+    <button title="Export" id="export" >Export</button>
+    <a href="{% url 'stock_create'%}" title="New" >Add New</a>
+    <a href="{% url 'stock_list'%}" title="Refresh" >Refresh</a>
+    </div>
+</div>
+
+</form>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+<br>
+<table id="list">
+    <tr>
+      <th >ITEM</th>
+      <th >COLOR</th>
+      <th >QUANTITY</th>
+      <th >LOCATION</th>
+      <th >STORED@</th>
+      <th >CONDITION</th>
+      <th >RECEIVE</th>
+      <th >ISSUE</th>
+      <th >UPDATE</th>
+      <th >DELETE</th>
+    </tr>
+{% for stock in queryset %}
+    <tr >
+        <td>{{stock.category}}</td>
+        <td>{%if stock.color%}
+            {{stock.color}}
+            {%else%}
+            N/A
+            {%endif%}
+        </td>
+        <td>{{stock.quantity}}</td>
+        <td>{{stock.location}}</td>
+        <td>{%if stock.container_id %}
+            {{stock.container_id}}
+            {%else%}
+            {%if stock.shelf_id%}
+            {{stock.shelf_id}}
+            {%else%}
+            N/A 
+            {%endif%}
+            {%endif%}
+        </td>
+        <td>{%if stock.condition %}
+            {{stock.condition}}
+            {%else%}
+            N/A
+            {%endif%}
+        </td>
+        <td><a href="{% url 'stock_receive' stock.id %}"
+            ><h5>Receive</h5></a></td>
+
+        <td><a href="{% url 'stock_issue' stock.id %}" 
+               ><h5>Issue</h5></a></td>
+
+       <td><a href="{% url 'stock_detail' stock.id %}"
+           ><h5>Details</h5></a></td>
+
+        <td><a href="{% url 'stock_update' stock.id %}"
+            ><h5>Update</h5></a></td>
+
+        <td><a href="{% url 'stock_delete' stock.id %}"
+            ><h5>Delete</h5></a></td>  
+
+    </tr>
+{% endfor %}
+</table>
+{% endblock content %}

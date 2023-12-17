@@ -1,0 +1,52 @@
+:root {
+    /* colors */
+    --primary: #18ffff;
+    --primary-dark: #10b2b2;
+    --primary-light: #46ffff;
+
+    --secondary: #f50057;
+    --secondary-dark: #ab003c;
+    --secondary-light: #f73378;
+
+    /* heading sizes */
+    --heading-1-size: 3.5rem;
+    --heading-2-size: 2rem;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'space mono', monospace;
+    font-size: 1.8rem;
+    background-color: var(--primary-dark);
+}
+.hero {
+    display: flex;
+    flex-grow: 1;
+}
+h1 {
+    font-size: var(--heading-1-size);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
