@@ -15,6 +15,11 @@ class Stock(models.Model):
             ('Enclosure', 'Enclosure'),
             ('Tee Joint', 'Tee Joint'),
             ('Straight Joint', 'Straight Joint'),
+            ('F16 v4', 'F16 v4'),
+            ('F16 v3', 'F16 v3'),
+            ('F4', ' F4'),
+            ('F48', 'F48'),
+            ('Power Supply', 'Power Supply'),
             )
     category = models.CharField(max_length=100, choices=CATEGORIES, blank=True, null=True)
 

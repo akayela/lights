@@ -2,13 +2,19 @@
 {% load static %}
 
 {% block content %}
-<br>
+
+<div class="issuing-page">
 <h2>{{ title }}</h2>
 
 <form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="submit" value='Save'>
+
+    <div class="issuing-buttons">
+        <input class="issuing-input-button" type="submit" value='Save'>
+        <a class="issuing-button-link" href="{% url 'stock_list' %}">Back</a>
+    </div>
 </form>
+</div>
 
 {% endblock content %}

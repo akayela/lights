@@ -2,51 +2,64 @@
 {% load static %}
 {% block content %}
 
-<h2 id="heading">Liggiefees Stock</h2>
 
-<form action="">
-<div class="input-group">
-    
-    <input type="text" name="q" id="search" placeholder="Search">
-    <div id="buttons">
-    <button title="Search" >Search</button>
-    <button title="Export" id="export" >Export</button>
-    <a href="{% url 'stock_create'%}" title="New" >Add New</a>
-    <a href="{% url 'stock_list'%}" title="Refresh" >Refresh</a>
+
+<div class="left">
+
+<div class="search search-section">
+    <form action="">
+        <input class="search-input" type="text" name="q" id="search" placeholder="  Search">
+        <div class="search-buttons">
+            <button class="search-button" title="Search" ><span>S</span>earch</button>
+            <button class="search-button" title="Export" id="export" >Export</button>
+        </div>
+    <div class="search-button-links">
+        <a href="{% url 'stock_create'%}" class="search-button-link" title="New"     >Add New</a>
+        <a href="{% url 'stock_list'%}"   class="search-button-link" title="Refresh" >Refre<span>s</span>h</a>
     </div>
-</div>
-
 </form>
+</div>
+<div class="messages">
+    <h2>Message<span>s</span></h2>
 {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                {{ message }}
-            </li>
+            <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}<span>!!</span>
+            </p>
         {% endfor %}
     </ul>
 {% endif %}
 
+</div>
 
-<br>
-<table id="list">
+</div>
+
+
+<div class="right">
+<table class="table" id="list">
+    <thead>
     <tr>
       <th >ITEM</th>
-      <th >COLOR</th>
+      <th >COLOR/<span>S</span>IZE</th>
       <th >QUANTITY</th>
       <th >LOCATION</th>
-      <th >STORED@</th>
+      <th ><span>S</span>TORAGE</th>
       <th >CONDITION</th>
       <th >RECEIVE</th>
-      <th >ISSUE</th>
+      <th >I<span>SS</span>UE</th>
+      <th >DETAIL<span>S</span></th>
       <th >UPDATE</th>
       <th >DELETE</th>
     </tr>
+</thead>
 {% for stock in queryset %}
     <tr >
         <td>{{stock.category}}</td>
         <td>{%if stock.color%}
             {{stock.color}}
+            {%elif stock.size%}
+            {{stock.size}}
             {%else%}
             N/A
             {%endif%}
@@ -69,22 +82,23 @@
             N/A
             {%endif%}
         </td>
-        <td><a href="{% url 'stock_receive' stock.id %}"
+        <td><a class="table-button-link" href="{% url 'stock_receive' stock.id %}"
             ><h5>Receive</h5></a></td>
 
-        <td><a href="{% url 'stock_issue' stock.id %}" 
-               ><h5>Issue</h5></a></td>
+        <td><a class="table-button-link" href="{% url 'stock_issue' stock.id %}" 
+               ><h5>I<span>ss</span>ue</h5></a></td>
 
-       <td><a href="{% url 'stock_detail' stock.id %}"
-           ><h5>Details</h5></a></td>
+       <td><a class="table-button-link" href="{% url 'stock_detail' stock.id %}"
+           ><h5>Detail<span>s</span></h5></a></td>
 
-        <td><a href="{% url 'stock_update' stock.id %}"
+        <td><a class="table-button-link" href="{% url 'stock_update' stock.id %}"
             ><h5>Update</h5></a></td>
 
-        <td><a href="{% url 'stock_delete' stock.id %}"
+        <td><a class="table-button-link" href="{% url 'stock_delete' stock.id %}"
             ><h5>Delete</h5></a></td>  
 
     </tr>
 {% endfor %}
 </table>
+</div>
 {% endblock content %}
