@@ -72,22 +72,31 @@ body {
 .main {
     background-image: url("../images/trees.jpg");
     height: 83vh; 
-    padding: var(--padding-small);
+    margin-top: 25px;
     border-radius: var(--radius-small);
 }
 
-.content-wrapper {
-    padding: var(--padding-small);
+/* .content-wrapper {
+    padding-top: var(--padding-small);
 }
+*/
 
 .content{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
+.list-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 8fr;
+    grid-template-rows: 1fr;
+    grid-gap: var(--padding-small);
+}
+
 .left {
-    width: 20%;
     display: flex;
+    opacity: 90%;
     flex-direction: column;
     background-color: var(--secondary-bg-color);
     border-radius: var(--radius-small);   
@@ -177,10 +186,9 @@ span {
 }
 
 .right {
-    width: 75%;
     opacity: 95%;
     display: flex;
-    justify-content: stretch;
+    justify-content: center;
     border-radius: var(--radius-small);
 }
 

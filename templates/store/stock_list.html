@@ -3,22 +3,24 @@
 {% block content %}
 
 
-
+<div class="list-wrapper content">
 <div class="left">
-
-<div class="search search-section">
-    <form action="">
-        <input class="search-input" type="text" name="q" id="search" placeholder="  Search">
-        <div class="search-buttons">
-            <button class="search-button" title="Search" ><span>S</span>earch</button>
-            <button class="search-button" title="Export" id="export" >Export</button>
+    <form action="" class="search">
+        <input id="search-input-box" type="text" name="q" id="search" placeholder="  Search">
+        <div class="search-button-group">
+            <div class="search-buttons">
+            <button class="list-button" id="search-button" title="Search" ><span>S</span>earch</button>
+            <a class="list-link" href="{% url 'stock_list'%}"   id="refresh-link" title="Refresh" >Refre<span>s</span>h</a>  
+            
         </div>
-    <div class="search-button-links">
-        <a href="{% url 'stock_create'%}" class="search-button-link" title="New"     >Add New</a>
-        <a href="{% url 'stock_list'%}"   class="search-button-link" title="Refresh" >Refre<span>s</span>h</a>
+        <div class="search-buttons2">
+            <button class="list-button" title="Export" id="export" >Export</button>
+        <a class="list-link" href="{% url 'stock_create'%}" id="add-new-link" title="New"     >Add New</a>
+        
     </div>
+    </div>   
 </form>
-</div>
+
 <div class="messages">
     <h2>Message<span>s</span></h2>
 {% if messages %}
@@ -30,10 +32,11 @@
         {% endfor %}
     </ul>
 {% endif %}
-
 </div>
 
 </div>
+
+
 
 
 <div class="right">
@@ -82,23 +85,25 @@
             N/A
             {%endif%}
         </td>
-        <td><a class="table-button-link" href="{% url 'stock_receive' stock.id %}"
+        <td id="receive"><a class="table-button-link" id="receive-link" href="{% url 'stock_receive' stock.id %}"
             ><h5>Receive</h5></a></td>
 
-        <td><a class="table-button-link" href="{% url 'stock_issue' stock.id %}" 
+        <td id="issue"><a class="table-button-link" id="issue-link" href="{% url 'stock_issue' stock.id %}" 
                ><h5>I<span>ss</span>ue</h5></a></td>
 
-       <td><a class="table-button-link" href="{% url 'stock_detail' stock.id %}"
+       <td id="details"><a class="table-button-link" id="details-link" href="{% url 'stock_detail' stock.id %}"
            ><h5>Detail<span>s</span></h5></a></td>
 
-        <td><a class="table-button-link" href="{% url 'stock_update' stock.id %}"
+        <td id="update"><a class="table-button-link" id="update-link" href="{% url 'stock_update' stock.id %}"
             ><h5>Update</h5></a></td>
 
-        <td><a class="table-button-link" href="{% url 'stock_delete' stock.id %}"
+        <td id="delete"><a class="table-button-link" id="delete-link" href="{% url 'stock_delete' stock.id %}"
             ><h5>Delete</h5></a></td>  
 
     </tr>
 {% endfor %}
 </table>
+</div>
+</div>
 </div>
 {% endblock content %}
