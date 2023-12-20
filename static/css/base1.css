@@ -13,9 +13,12 @@ html {
 
 /* font */
 .body {
-  font-size: 62.5%; /* setting default browser font size*/
-  font-size: 1.8rem; /* setting app font size*/
-  font-weight: 500; /* setting app font weight*/
+  font-size: 62.5%;
+  /* setting default browser font size*/
+  font-size: 1.8rem;
+  /* setting app font size*/
+  font-weight: 500;
+  /* setting app font weight*/
 }
 
 /* grid for logo section and content section */
@@ -196,7 +199,7 @@ a:link,
 }
 
 /* list-table styles */
-.right > table > tr,
+.right>table>tr,
 th,
 td {
   background-color: white;
@@ -205,6 +208,7 @@ td {
   padding: 10px;
 }
 
+/* Table link styles */
 .table-button-link {
   font-weight: bold;
   font-size: larger;
@@ -235,6 +239,7 @@ td {
   color: red;
 }
 
+/*stock-list pagination styles*/
 .pagination {
   background-color: white;
   border-radius: 5px;
