@@ -1,39 +1,33 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>{% block title %}Liggiefees Stock{% endblock title %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,
 wght@0,400;0,700;1,400;1,700&display=swap"
-rel="stylesheet">
+      rel="stylesheet"
+    />
     <!-- CSS only -->
-    <link rel="stylesheet" href="{% static 'css/base1.css' %}">
-</head>
-<body>
-    <div class="container">
-         <div class="hero" id="hero">
-               <img class="hero-logo" src="{% static 'images/LiggiefeesLogo.png' %}">
-              
-         </div>
-         <div class="main-background" >
-        <div class="main">
-            <div class="content-wrapper">
-            <div class="main-heading">
-                <h1 class="heading"><span>S</span>tock Management</h1>
-                </div>
-                <!--<div class="content">-->
-                
-            {% block content %}
-            {% endblock content %}
-            <!__</div>-->
+    <link rel="stylesheet" href="{% static 'css/base1.css' %}" />
+  </head>
+  <body>
+    <div class="main-app-container">
+      <div class="logo-container">
+        <img class="logo" src="{% static 'images/LiggiefeesLogo.png' %}" />
+      </div>
+      <div class="main-background">
+        <div class="content-wrapper">
+          <div class="main-heading">
+            <h1><span>S</span>tock Management</h1>
+          </div>
+          {% block content %} {% endblock content %}
         </div>
-         </div>
+      </div>
     </div>
-    </div>
-   <script src="{% static 'js/base.js' %}"></script>
-</body>
+    <script src="{% static 'js/base.js' %}"></script>
+  </body>
 </html>

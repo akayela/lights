@@ -1,109 +1,161 @@
-{% extends '_base.html' %}
-{% load static %}
-{% block content %}
+{% extends '_base.html' %} {% load static %} {% block content %}
 
-
-<div class="list-wrapper content">
-<div class="left">
-    <form action="" class="search">
-        <input id="search-input-box" type="text" name="q" id="search" placeholder="  Search">
-        <div class="search-button-group">
-            <div class="search-buttons">
-            <button class="list-button" id="search-button" title="Search" ><span>S</span>earch</button>
-            <a class="list-link" href="{% url 'stock_list'%}"   id="refresh-link" title="Refresh" >Refre<span>s</span>h</a>  
-            
+<div class="stock-list-container">
+  <div class="left">
+    <form action="" class="search-form">
+      <input class="search-form-input" type="text" name="q" id="search" placeholder="  Search" />
+      <div class="form-buttons-and-links-group">
+        <div class="search-and-refresh-group">
+          <button class="search-form-button" id="search-button" title="Search">
+            <span>S</span>earch
+          </button>
+          <a class="search-form-link" href="{% url 'stock_list'%}" id="refresh-link"
+            title="Refresh">Refre<span>s</span>h</a>
         </div>
-        <div class="search-buttons2">
-            <button class="list-button" title="Export" id="export" >Export</button>
-        <a class="list-link" href="{% url 'stock_create'%}" id="add-new-link" title="New"     >Add New</a>
-        
-    </div>
-    </div>   
-</form>
+        <div class="export-and-add-new-group">
+          <button class="search-form-button" title="Export" id="export-button">
+            Export
+          </button>
+          <a class="search-form-link" href="{% url 'stock_create'%}" id="add-new-link" title="New">Add New</a>
+        </div>
+      </div>
+    </form>
 
-<div class="messages">
-    <h2>Message<span>s</span></h2>
-{% if messages %}
-    <ul class="messages">
+    <!-- start of messages section  -->
+    <div class="messages">
+      <h2>Message<span>s</span></h2>
+      {% if messages %}
+      <ul class="messages">
         {% for message in messages %}
-            <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-                {{ message }}<span>!!</span>
-            </p>
-        {% endfor %}
-    </ul>
-{% endif %}
-</div>
+        <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+          {{ message }}<span>!!</span>
+        </p>
+        {% endfor %} {% else %}
+        <br />
+        <hr />
+        <p>
+          <center>
+            Liggiefees stock management
+            <hr />
+            Version 0.3
+          </center>
+        </p>
+        <hr />
+        <p>
+          <center>&copy <strong>Creative Software Solutions</strong></center>
+        </p>
+        <hr />
+      </ul>
+      {% endif %}
+    </div>
 
-</div>
+    <!-- end of messages -->
+  </div>
+  <!-- end of left -->
 
-
-
-
-<div class="right">
-<table class="table" id="list">
-    <thead>
-    <tr>
-      <th >ITEM</th>
-      <th >COLOR/<span>S</span>IZE</th>
-      <th >QUANTITY</th>
-      <th >LOCATION</th>
-      <th ><span>S</span>TORAGE</th>
-      <th >CONDITION</th>
-      <th >RECEIVE</th>
-      <th >I<span>SS</span>UE</th>
-      <th >DETAIL<span>S</span></th>
-      <th >UPDATE</th>
-      <th >DELETE</th>
-    </tr>
-</thead>
-{% for stock in queryset %}
-    <tr >
+  <!-- start of right -->
+  <div class="right">
+    <!-- start of table -->
+    <table class="table" id="list">
+      <thead>
+        <tr>
+          <th>ITEM</th>
+          <th>COLOR/<span>S</span>IZE</th>
+          <th>QUANTITY</th>
+          <th>LOCATION</th>
+          <th><span>S</span>TORAGE</th>
+          <th>CONDITION</th>
+          <th>RECEIVE</th>
+          <th>I<span>SS</span>UE</th>
+          <th>DETAIL<span>S</span></th>
+          <th>UPDATE</th>
+          <th>DELETE</th>
+        </tr>
+      </thead>
+      {% for stock in page_obj %}
+      <tr>
         <td>{{stock.category}}</td>
-        <td>{%if stock.color%}
-            {{stock.color}}
-            {%elif stock.size%}
-            {{stock.size}}
-            {%else%}
-            N/A
-            {%endif%}
+        <td>
+          {%if stock.color%} {{stock.color}} {%elif stock.size%} {{stock.size}}
+          {%else%} N/A {%endif%}
         </td>
         <td>{{stock.quantity}}</td>
         <td>{{stock.location}}</td>
-        <td>{%if stock.container_id %}
-            {{stock.container_id}}
-            {%else%}
-            {%if stock.shelf_id%}
-            {{stock.shelf_id}}
-            {%else%}
-            N/A 
-            {%endif%}
-            {%endif%}
+        <td>
+          {%if stock.container_id %}
+          {{stock.container_id}}
+          {%else%}
+          {%if stock.shelf_id%}
+          {{stock.shelf_id}}
+          {%else%}
+          N/A
+          {%endif%}
+          {%endif%}
         </td>
-        <td>{%if stock.condition %}
-            {{stock.condition}}
-            {%else%}
-            N/A
-            {%endif%}
+        <td>
+          {%if stock.condition %} {{stock.condition}} {%else%} N/A {%endif%}
         </td>
-        <td id="receive"><a class="table-button-link" id="receive-link" href="{% url 'stock_receive' stock.id %}"
-            ><h5>Receive</h5></a></td>
+        <td id="receive">
+          <a class="table-button-link" id="receive-link" href="{% url 'stock_receive' stock.id %}">
+            <h5>Receive</h5>
+          </a>
+        </td>
 
-        <td id="issue"><a class="table-button-link" id="issue-link" href="{% url 'stock_issue' stock.id %}" 
-               ><h5>I<span>ss</span>ue</h5></a></td>
+        <td id="issue">
+          <a class="table-button-link" id="issue-link" href="{% url 'stock_issue' stock.id %}">
+            <h5>I<span>ss</span>ue</h5>
+          </a>
+        </td>
 
-       <td id="details"><a class="table-button-link" id="details-link" href="{% url 'stock_detail' stock.id %}"
-           ><h5>Detail<span>s</span></h5></a></td>
+        <td id="details">
+          <a class="table-button-link" id="details-link" href="{% url 'stock_detail' stock.id %}">
+            <h5>Detail<span>s</span></h5>
+          </a>
+        </td>
 
-        <td id="update"><a class="table-button-link" id="update-link" href="{% url 'stock_update' stock.id %}"
-            ><h5>Update</h5></a></td>
+        <td id="update">
+          <a class="table-button-link" id="update-link" href="{% url 'stock_update' stock.id %}">
+            <h5>Update</h5>
+          </a>
+        </td>
 
-        <td id="delete"><a class="table-button-link" id="delete-link" href="{% url 'stock_delete' stock.id %}"
-            ><h5>Delete</h5></a></td>  
+        <td id="delete">
+          <a class="table-button-link" id="delete-link" href="{% url 'stock_delete' stock.id %}">
+            <h5>Delete</h5>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <!-- end of table -->
 
-    </tr>
-{% endfor %}
-</table>
+    <!-- start of pagination -->
+    <div class="pagination">
+      <span class="step-links">
+        {% if page_obj.has_previous %}
+
+        <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+
+        {%else%}
+
+        <a href="?page=1"></a>
+        {% endif %}
+
+        <span class="current">
+          {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+
+        {% else %}
+        <a href="?page={{ page_obj.paginator.num_pages }}"></a>
+        {% endif %}
+      </span>
+    </div>
+    <!-- end of pagination -->
+  </div>
+  <!-- end of right -->
 </div>
-</div>
-</div>
+<!-- end of stock-list-wrapper -->
 {% endblock content %}
