@@ -21,6 +21,8 @@
       </div>
     </form>
 
+
+
     <!-- start of messages section  -->
     <div class="messages">
       <h2>Message<span>s</span></h2>
@@ -59,12 +61,12 @@
     <table class="table" id="list">
       <thead>
         <tr>
-          <th>ITEM</th>
-          <th>COLOR/<span>S</span>IZE</th>
-          <th>QUANTITY</th>
-          <th>LOCATION</th>
-          <th><span>S</span>TORAGE</th>
-          <th>CONDITION</th>
+          <th class="export-items">ITEM</th>
+          <th class="export-items">COLOR/<span>S</span>IZE</th>
+          <th class="export-items">QUANTITY</th>
+          <th class="export-items">LOCATION</th>
+          <th class="export-items"><span>S</span>TORAGE</th>
+          <th class="export-items">CONDITION</th>
           <th>RECEIVE</th>
           <th>I<span>SS</span>UE</th>
           <th>DETAIL<span>S</span></th>
@@ -88,7 +90,7 @@
           {%if stock.shelf_id%}
           {{stock.shelf_id}}
           {%else%}
-          N/A
+          0
           {%endif%}
           {%endif%}
         </td>
@@ -158,4 +160,98 @@
   <!-- end of right -->
 </div>
 <!-- end of stock-list-wrapper -->
+
+
+
+<!-- start of mobile section container-->
+<div class="mobile-section-container">
+  <!-- start of mobile logo container -->
+  <div class="mobile-logo-container">
+    <img class="mobile-logo" src="{% static 'images/LiggiefeesLogo.png' %}" />
+  </div>
+  <!-- end of logo container -->
+
+  <!-- start of mobile content container  -->
+  <div class="mobile-content-container">
+    <form action="" class="mobile-search-form-container">
+      <input class="search-form-input" type="text" name="q" id="search" placeholder="  Search" />
+      <button class="search-form-button" id="search-button" title="Search">
+        <span>S</span>earch
+      </button>
+      <a class="search-form-link" href="{% url 'stock_list'%}" id="refresh-link"
+        title="Refresh">Refre<span>s</span>h</a>
+      <button class="search-form-button" title="Export" id="export-button">
+        Export
+      </button>
+      <a class="search-form-link" href="{% url 'stock_create'%}" id="add-new-link" title="New">Add New</a>
+    </form>
+
+    <!-- start of right -->
+    <div class="mobile-table-and-pagination-container">
+      <!-- start of table -->
+      <table class="mobile-table" id="list">
+        <thead>
+          <tr>
+            <th>COLOR/<span>S</span>IZE</th>
+            <th>QUANTITY</th>
+            <th><span>S</span>TORAGE</th>
+
+          </tr>
+        </thead>
+        {% for stock in page_obj %}
+        <tr>
+          <td>
+            {%if stock.color%} {{stock.color}} {%elif stock.size%} {{stock.size}}
+            {%else%} N/A {%endif%}
+          </td>
+          <td>{{stock.quantity}}</td>
+          <td>
+            {%if stock.container_id %}
+            {{stock.container_id}}
+            {%else%}
+            {%if stock.shelf_id%}
+            {{stock.shelf_id}}
+            {%else%}
+            0
+            {%endif%}
+            {%endif%}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <!-- end of mobile table -->
+
+      <!-- start of pagination -->
+      <div class="mobile-pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+
+          <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+
+          {%else%}
+
+          <a href="?page=1"></a>
+          {% endif %}
+
+          <span class="current">
+            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          </span>
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+
+          {% else %}
+          <a href="?page={{ page_obj.paginator.num_pages }}"></a>
+          {% endif %}
+        </span>
+      </div>
+      <!-- end of mobile pagination -->
+    </div>
+  </div>
+  <!-- end of mobile content container -->
+
+
+</div>
+<!-- end of mobile section container -->
+
 {% endblock content %}

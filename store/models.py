@@ -11,7 +11,7 @@ class Stock(models.Model):
             ('Round Rope', 'Round Rope'),
             ('Flat Rope', 'Flat Rope'),
             ('Cable Ties', 'Cable Ties'),
-            ('Control Blocks', 'Control Blocks'),
+            ('Control Block', 'Control Block'),
             ('Enclosure', 'Enclosure'),
             ('Tee Joint', 'Tee Joint'),
             ('Straight Joint', 'Straight Joint'),
@@ -87,9 +87,9 @@ class Stock(models.Model):
 
     location = models.CharField(max_length=100, null=True, blank=True)
 
-    shelf_id = models.CharField(max_length=100, blank=True, null=True)
+    shelf_id = models.IntegerField(default=0, blank=True, null=True)
 
-    container_id = models.CharField(max_length=100, blank=True, null=True)
+    container_id = models.IntegerField(default=0, blank=True, null=True)
 
     issue_quantity = models.IntegerField(default=0, blank=True, null=True)
 

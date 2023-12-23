@@ -3,7 +3,7 @@ function download_csv(csv, filename) {
     var downloadLink;
 
     // CSV FILE
-    csvFile = new Blob([csv], {type: "text/csv"});
+    csvFile = new Blob([csv], { type: "text/csv" });
 
     // Download link
     downloadLink = document.createElement("a");
@@ -25,24 +25,25 @@ function download_csv(csv, filename) {
 }
 
 function export_table_to_csv(html, filename) {
-	var csv = [];
-	var rows = document.querySelectorAll("table tr");
-	
+    var csv = [];
+    var rows = document.querySelectorAll("table tr");
+
     for (var i = 0; i < rows.length; i++) {
-		var row = [], cols = rows[i].querySelectorAll("td, th");
-		
-        for (var j = 0; j < cols.length; j++) 
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+
+
+        for (var j = 0; j < cols.length; j++)
             row.push(cols[j].innerText);
-        
-		csv.push(row.join(","));		
-	}
+
+        csv.push(row.join(","));
+    }
 
     // Download CSV
     download_csv(csv.join("\n"), filename);
 }
 
-document.querySelector("#export").addEventListener("click", function () {
+document.querySelector("#export-button").addEventListener("click", function () {
     var html = document.querySelector("#list").outerHTML;
-	export_table_to_csv(html, "stock_list.csv");
+    export_table_to_csv(html, "stock_list.csv");
 });
 

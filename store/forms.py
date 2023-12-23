@@ -7,10 +7,11 @@ class StockCreateForm(forms.ModelForm):
         fields = [ 
                 'category',
                 'color',
-                'quantity',
-                'unit',
-                'stock_code',
                 'condition',
+                'unit',
+                'size',
+                'stock_code',
+                'quantity',
                 'location',
                 'shelf_id',
                 'container_id',
@@ -27,12 +28,13 @@ class StockUpdateForm(forms.ModelForm):
     class Meta:
         model = Stock
         fields = [ 
-                'category',
+               'category',
                 'color',
-                'quantity',
-                'unit',
-                'stock_code',
                 'condition',
+                'unit',
+                'size',
+                'stock_code',
+                'quantity',
                 'location',
                 'shelf_id',
                 'container_id',

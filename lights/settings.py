@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8mx1)g=*sw7r2eqwnavpe(&52z&h#)m!m_k4=xl$tn(gqk9i12
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['witty-frog-previously.ngrok-free.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://witty-frog-previously.ngrok-free.app']
 
 ROOT_URLCONF = 'lights.urls'
 

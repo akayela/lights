@@ -3,12 +3,16 @@
 
 {% block content %}
 
-<form method="POST" action="">
-   {% csrf_token %}
-     <h1>Are you sure you want to delete?</h1><br>
-     <input type="submit" value="Yes" />
-     <a href="{% url 'stock_list' %}">
-         <div>Cancel</div></a>
-</form>
+<div class="delete-form-container">
+  <h2>Are you sure?</h2>
+
+  <form class="delete-form" action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input class="delete-form-button" type="submit" value='Yes'>
+    <a class="delete-form-link" href="{% url 'stock_list'%}" id="home-link" title="Refresh">Cancel</a>
+  </form>
+</div>
+
 
 {% endblock content %}

@@ -3,35 +3,35 @@
 
 {% block content %}
 <div class="details">
-          <table class="details-table">
-                  <tr>
-                    <th>ITEM</th>
-                    <th>COLOR/<span>S</span>IZE</th>
-                    <th>QUANTITY</th>
-                    <th>LOCATION</th>
-                    <th><span>S</span>TORAGE</th>
-                    <th>CONDITION</th>
-                    <th>UPDATED</th>
-                    <th>BACK</th>
-                  </tr>
-                  <tr>
-                    <td>{{queryset.category}}</td>
-                    <td>{%if stock.color%}
-                      {{stock.color}}
-                      {%elif stock.size%}
-                      {{stock.size}}
-                      {%else%}
-                      N/A
-                      {%endif%}
-                  </td>
-                    <td>{{queryset.quantity}}</td>
-                    <td>{{queryset.location}}</td>
-                    <td>{{queryset.container_id}}</td>
-                    <td>{{queryset.condition}}</td>
-                    <td>{{queryset.last_updated}}</td>
-                    <td><a class="details-table-button-link" href="{% url 'stock_list' %}">BACK TO LIST</a></td>
-                  </tr>
-          </table>
-        </div>
-        
+  <table class="table details-table">
+    <tr>
+      <th>ITEM</th>
+      <th>COLOR/<span>S</span>IZE</th>
+      <th>QUANTITY</th>
+      <th>LOCATION</th>
+      <th><span>S</span>TORAGE</th>
+      <th>CONDITION</th>
+      <th>UPDATED</th>
+      <th>BACK</th>
+    </tr>
+    <tr>
+      <td>{{queryset.category}}</td>
+      <td>{%if stock.color%}
+        {{stock.color}}
+        {%elif stock.size%}
+        {{stock.size}}
+        {%else%}
+        N/A
+        {%endif%}
+      </td>
+      <td>{{queryset.quantity}}</td>
+      <td>{{queryset.location}}</td>
+      <td>{{queryset.container_id}}</td>
+      <td>{{queryset.condition}}</td>
+      <td>{{queryset.last_updated}}</td>
+      <td><a class="details-table-link" href="{% url 'stock_list' %}">BACK</a></td>
+    </tr>
+  </table>
+</div>
+
 {% endblock content %}

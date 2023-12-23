@@ -2,13 +2,15 @@
 {% load static %}
 
 {% block content %}
-<br>
-<h2>{{ title }}</h2>
+<div class="form-container">
+    <h2>{{ title }}</h2>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value='Save'>
-</form>
+    <form class="form" action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="form-button" type="submit" value='Save and Add Another'>
+        <a class="form-link" href="{% url 'stock_list'%}" id="home-link" title="Refresh">Back</a>
+    </form>
+</div>
 
 {% endblock content %}

@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.db.models import Q
 
 def stock_list(request):
-    queryset = Stock.objects.all().order_by('location','shelf_id','container_id')
+    queryset = Stock.objects.all().order_by('location', 'container_id')
     paginator = Paginator(queryset, 10)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -47,7 +47,7 @@ def stock_create(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Item Added')
-        return redirect(stock_list)
+        return redirect(stock_create)
     context = {
             "form": form,
             "title": "Add Stock Item"

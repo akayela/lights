@@ -2,20 +2,16 @@
 {% load static %}
 
 {% block content %}
+<div class="short-form-container">
+    <h2>{{ title }}</h2>
 
-<div class="receiving-page">
-<h2>{{ title }}</h2>
-
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-
-    <div class="receiving-buttons">
-        <input class="receiving-input-button" type="submit" value='Save'>
-        <a class="receiving-button-link" href="{% url 'stock_list' %}">Back</a>
-    </div>
-    
-</form>
+    <form class="short-form" action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="short-form-button" type="submit" value='Receive'>
+        <a class="short-form-link" href="{% url 'stock_list'%}" id="home-link" title="Refresh">Back</a>
+    </form>
 </div>
+
 
 {% endblock content %}
