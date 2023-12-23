@@ -1,0 +1,31 @@
+Database Setup
+$sudo -u postgres psql
+postgres=# create database storedb;
+postgres=# create user storedbuser with password 'storedbuser/15';
+postgres=# grant all privileges on database storedb to stordbuser;
+postgres=# alter database storedb owner to storedb;
+
+Open terminal in this current directory and run
+$source env/bin/activate
+$pip install django psycopg2-binary
+$python3 manage.py migrate
+$python3 manage.py runserver
+kill server with control + c
+$python3 manage.py createsuperuser
+$python3 manage.py runserver
+
+Going online
+sign up for ngrok:
+https://ngrok.com/
+create static domain of ngrok dashboard
+
+Install ngrok on computer:
+$sudo snap insall ngrok
+
+Add ngrok auth token to your ngrok config
+$ngrok config add-authtoken <your token>
+$ngrok http8000 --your-static-domain
+$ngrok http http://localhost:8000 --basic-auth '<username:password>'
+
+
+

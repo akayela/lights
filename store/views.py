@@ -30,6 +30,7 @@ def stock_list(request):
                 Q(condition__icontains=query) |
                 Q(location__icontains=query) |
                 Q(container_id__icontains=query) |
+                Q(quantity__icontains=query) |
                 Q(size__icontains=query) |
                 Q(shelf_id__icontains=query) 
                 )
