@@ -2,8 +2,8 @@ Database Setup
 $sudo -u postgres psql
 postgres=# create database storedb;
 postgres=# create user storedbuser with password 'storedbuser/15';
-postgres=# grant all privileges on database storedb to stordbuser;
-postgres=# alter database storedb owner to storedb;
+postgres=# grant all privileges on database storedb to storedbuser;
+postgres=# alter database storedb owner to storedbuser;
 
 Open terminal in this current directory and run
 $source env/bin/activate

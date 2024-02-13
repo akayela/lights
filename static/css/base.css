@@ -95,6 +95,8 @@ a:link,
   border-radius: 5px;
   padding: 10px;
   font-size: 1.1rem;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 /* FORM STYLES */
@@ -194,9 +196,11 @@ a:link,
 /* creating the grid */
 .right {
   display: grid;
-  grid-template-rows: 10fr 1fr;
+  grid-template-rows: 11fr;
   grid-template-columns: 1fr;
   grid-gap: 5px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 /* list-table styles */

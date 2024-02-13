@@ -1,4 +1,3 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .models import Stock
 from .forms import (
@@ -14,11 +13,9 @@ from django.db.models import Q
 
 def stock_list(request):
     queryset = Stock.objects.all().order_by('location', 'container_id')
-    paginator = Paginator(queryset, 10)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+   
     context = {
-            'page_obj': page_obj
+            'queryset': queryset
             }
 
     query = request.GET.get('q')
@@ -34,11 +31,9 @@ def stock_list(request):
                 Q(size__icontains=query) |
                 Q(shelf_id__icontains=query) 
                 )
-        paginator = Paginator(queryset, 10)
-        page_number = request.GET.get("page")
-        page_obj = paginator.get_page(page_number)
+        
         context = {
-            'page_obj': page_obj
+            'queryset': queryset,
             }
     return render(request, "store/stock_list.html", context)  
 
